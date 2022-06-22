@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+
+
+		<div id="root">
+			<!-- 3.编写组件标签 -->
+			<yanghang></yanghang>
+			<hr>
+			<lvting></lvting>
+		</div>
+
+
+
+		<div id="root2">
+			<hello></hello>
+		</div>
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+			
+			
+			//1.创建组件
+			const yang = Vue.extend({
+				//定义组件的时候一定不要写el配置项
+				template:
+				`<div>
+					<h1>{{yangName}}</h1>
+					<h1>{{hangName}}</h1>
+					<button @click="btn">点我弹名字</button>
+				</div>`,
+				data() {
+					return {
+						yangName: "yang",
+						hangName: "hang"
+					}
+				},
+				methods:{
+					btn(){
+						alert(this.yangName)
+					}
+				}
+			})
+
+			const lv = Vue.extend({
+				template:
+				`<div>
+					<h1>{{lvName}}</h1>
+					<h1>{{tingName}}</h1>
+				</div>`,
+				data() {
+					return {
+						lvName: "lv",
+						tingName: "ting"
+					}
+				}
+			})
+
+			new Vue({
+				el:'#root',
+				//2.注册组件（局部注册）
+				components:{
+					yanghang:yang,
+					lvting:lv
+				}
+			})
+			
+			
+			const hello = Vue.extend({
+				template:
+				`<div>
+					<h1>{{hello}}</h1>
+				</div>`,
+				data() {
+					return {
+						hello: "hello",
+					}
+				}
+			})
+			
+			
+			//2.定义全局组件
+			Vue.component("hello",hello)
+			
+			new Vue({
+				el:'#root2',
+				components:{
+					hello:hello
+				}
+			})
+		</script>
+	</body>
+</html>

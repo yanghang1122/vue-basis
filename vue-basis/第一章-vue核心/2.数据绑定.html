@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div class="sec1">
+			<!-- 单项绑定 v-bind 数据只能从data流向页面 
+			v-bind 可以简写成:
+			-->
+			单项数据绑定<input type="text" :value="name" />
+			
+			
+			
+			<!-- 
+			双向绑定 数据不仅能从data流向页面 还能从页面流向data
+			v-model一版用在表单类元素上 v-model只能炒作value 
+			v-model:value 可以简写成v-model
+			-->
+			双项数据绑定<input type="text" v-model="name" />
+		</div>
+		
+		
+		<script type="text/javascript">
+			new Vue({
+				el:".sec1",
+				data:{
+					name:"hhh"
+				}
+				
+				
+			})
+		</script>
+		
+	</body>
+</html>

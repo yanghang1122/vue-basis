@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<!-- 计算属性定义：要用的属性不存在 需要通过已有的属性计算得来
+		原理：底层就是借助了 object.definproperty方法提供的setter和getter
+		get初次读取会执行一次 当依赖的数据发生改变会在次执行 有缓存机制 比methods效率更高
+		计算属性最终会出现在vm身上 直接this读取就可以 
+		如果计算属性要被修改就必须写set函数去响应修改
+		
+		
+		-->
+		
+		<div id="root">
+			姓:<input type="text" v-model:value="firstname" /><br><br>
+			名:<input type="text" v-model:value="lastname" /><br><br>
+			姓名:<span>{{allname}}</span>
+		</div>
+		
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+			
+			
+			let vm = new Vue({
+				el:"#root",
+				data(){
+					return{
+						firstname:"张",
+						lastname:"三"
+					}
+				},
+				computed:{
+					allname:{
+						//当有人读取allname的时候get就会执行 且返回值就是allname的值
+						get(){
+							//此处的this是vm
+							console.log(this)
+							return this.firstname + " - " + this.lastname;
+						},
+						//当allname被修改的时候 就执行
+						set(e){
+							//把接受的参数用-分割  再次赋值给firstname和lastname
+							let arr = e.split("-")
+							this.firstname = arr[0]
+							this.lastname = arr[1]
+						}
+					}
+				}
+			
+			})
+			
+			
+		</script>
+		
+	</body>
+</html>

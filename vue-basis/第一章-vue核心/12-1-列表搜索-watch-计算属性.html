@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+
+
+		<div id="content">
+			<!-- 遍历数组 可以遍历出两个参数 一个内容 一个索引 -->
+			搜索<input type="text" placeholder="请输入" v-model="keyword" />
+
+
+			<div v-for="(p,index) in filpersons" :key="index">
+				{{p.id}}-{{p.name}}-{{p.age}}
+			</div>
+
+
+
+		</div>
+
+
+
+
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+
+			// watch实现搜索
+			/*new Vue({
+				el:"#content",
+				data(){
+					return{
+						persons:[
+							{id:001,name:"马冬梅",age:18},
+							{id:002,name:"周冬雨",age:19},
+							{id:003,name:"周杰伦",age:20},
+							{id:004,name:"温兆伦",age:21},
+						],
+						filpersons:[],
+						keyword:""
+					}
+				},
+				watch:{
+					keyword:{
+						immediate:true,
+						handler(val){
+							this.filpersons = this.persons.filter((p)=>{
+								return p.name.indexOf(val) !== -1;
+							})
+						}	
+					}
+				}
+			})*/
+
+
+			new Vue({
+				el: "#content",
+				data() {
+					return {
+						persons:[
+							{id:001,name:"马冬梅",age:18},
+							{id:002,name:"周冬雨",age:19},
+							{id:003,name:"周杰伦",age:20},
+							{id:004,name:"温兆伦",age:21},
+						],
+						keyword:''
+					}
+				},
+				computed:{
+					filpersons:{
+						get(){
+							return this.persons.filter((p) =>{
+								// 不等于负一就是有的值 就返回
+								return p.name.indexOf(this.keyword) !== -1;
+							})
+						}
+					}
+				}
+				
+				
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+
+
+	 <div id="root"> 
+			<app></app>
+		</div>
+
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+			//创建组件
+		const yang = Vue.extend({
+			template:
+			`<div>
+				<h1>{{yangName}}</h1>
+				<h1>{{hangName}}</h1>
+			</div>`,
+			data() {
+				return {
+					yangName: "yang",
+					hangName: "hang"
+				}
+			},
+		})
+			//创建组件 在lv的组件里 又注册了yanghang组件
+			const lv = Vue.extend({
+				template:
+				`<div>
+					<h1>{{lvName}}</h1>
+					<h1>{{tingName}}</h1>
+						
+					<yanghang></yanghang>
+				</div>`,
+				data() {
+					return {
+						lvName: "lv",
+						tingName: "ting"
+					}
+				},
+				components:{
+					yanghang:yang
+				}
+			})
+			//创建组件
+			const hello = Vue.extend({
+				template:`<h1>{{msg}}</h1>`,
+				data(){
+					return{
+						msg:"hello"
+					}
+				}
+			})
+			
+			//创建一个父级组件 管理所有组件
+			const app = Vue.extend({
+				template:`
+				<div>
+					<lv></lv>
+					<hello></hello>
+				</div>
+				`,
+				//在父级组件里注册组件
+				components:{
+					lv:lv,
+					hello:hello
+				}
+			})
+
+			new Vue({
+				el:'#root',
+				components:{
+					app:app
+					
+				}
+			})
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

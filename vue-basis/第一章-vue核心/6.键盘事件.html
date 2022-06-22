@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<h1>{{name}}</h1>
+			<!-- 文本框获取焦点的时候按下delete和enter打印当前文本框内容  @keyup.delete.enter  delete和enter是vue给起的别名  不然需要判断按键的keycode 
+			
+				teb键特殊不能用按键抬起事件 光标会切走需要用按钮按下事件 特殊的还有shift ctrl alt win
+				
+				也可以自定义别名  Vue.config.keyCodes.按键名 = 按键码
+				
+			  切换大小写键特殊 他是由两个单词组成需要变成小写 两个单词之间用换行符表示 例:caps-lock
+			  -->
+			<input type="text" placeholder="提示" @keydown.ctrl.y="showinfo"/>
+		</div>
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		<script type="text/javascript">
+		Vue.config.productionTip = false;
+		
+		
+			new Vue({
+				el:"#root",
+				data(){
+					return{
+						name:"哈哈"
+					}
+				},
+				methods:{
+					showinfo(e){
+						//判断编码
+						// if(e.keyCode == 13){
+							console.log(e.target.value)
+							//获取按键的名字 获取按键的编码e.keycode
+							// console.log(e.key)
+						// }
+					}
+				}
+				
+			})
+			
+			
+			
+		</script>
+	</body>
+</html>

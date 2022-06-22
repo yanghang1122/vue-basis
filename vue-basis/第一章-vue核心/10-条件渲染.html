@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- //控制元素显示隐藏 可以写表达式 就是display：none -->
+			<!-- <h1 v-show="false">哈哈</h1> -->
+			<h1 v-show="how">哈哈</h1>
+			
+			
+			<h1>当前n的值是：{{n}}</h1>
+			<button type="button" @click="n++">点我n+1</button>
+			
+			<!-- if if if 是三个判断 会挨个执行 -->
+			<!-- if else-if else-if 是一组判断 一个就对的 地下的就不执行了 -->
+			
+			<!-- v-if 也可以隐藏 也可以写表达式 他是删掉了dom -->
+			<h1 v-if="n == 1">1</h1>
+			<h1 v-if="n == 1">1</h1>
+			<h1 v-if="n == 3">3</h1>
+			
+			
+			<!-- 这样写是不可以被打断的 dom不可以被插入别的东西 -->
+			<h1 v-if="n == 1">1</h1>
+			<h1 v-else-if="n == 1">1</h1>
+			<h1 v-else="n == 3">3</h1>
+			
+			
+			
+			<!-- template模板把想要的包裹起来 不会被解析成dom -->
+			<template v-if="list_show">
+				<h2>哈哈</h2>
+				<h2>哈哈</h2>
+				<h2>哈哈</h2>
+			</template>
+			
+		</div>
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		<script type="text/javascript">
+			
+			new Vue({
+				el:"#root",
+				data(){
+					return{
+						how:false,
+						n:0,
+						list_show:false
+					}
+				}
+				
+				
+			})
+			
+		</script>
+	</body>
+</html>

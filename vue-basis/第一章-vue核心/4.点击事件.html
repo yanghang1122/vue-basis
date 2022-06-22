@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="root">
+			<!-- 用v-on:click 添加事件 可以简写成 @click  如果要传参数就在后面加括号 -->
+			<button type="button" v-on:click="btn($event,66)">{{name}}</button>
+		</div>
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			
+			new Vue({
+				el:"#root",
+				data(){
+					return{
+						name:"点击"
+					}
+				},
+				//函数代码写在methods里 对象里写函数可以删掉:function 默认会传一个参数event
+				methods:{
+					btn:function(event,a){
+						console.log(event, a)
+						alert(a)
+					}
+				}
+				
+				
+			})
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<h1 :style="{opacity:aaa}">哈哈</h1>
+			<button type="button" @click="stop">点我关闭闪烁</button>
+		</div>
+		
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 生命周期函数就是vue在特定时间帮我们调用的一些特殊名称的函数
+			// 生命周期函数的this指向是vm或者组件实例对象
+			
+			Vue.config.productionTip = false;
+			
+			new Vue({
+				el:"#root",
+				data(){
+					return{
+						aaa:1
+					}
+				},
+				methods:{
+					stop(){
+						// clearInterval(this.timeout)
+						this.$destroy()
+					}
+				},
+				// vue完成模板的解析并把初始的生成真实dom放入页面的时候调用（挂载完毕） mounted
+				mounted(){
+					console.log("a")
+					this.timeout = setInterval(()=>{
+						console.log("定时器")
+						this.aaa -= 0.01;
+						if(this.aaa <= 0){
+							this.aaa = 1
+						}
+					},10)
+				},
+				//销毁之前关闭定时器
+				beforeDestroy(){
+					clearInterval(this.timeout)
+				}
+				
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>

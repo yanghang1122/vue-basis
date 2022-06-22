@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<h1>{{aaa}}</h1>
+			<!-- 向指定节点渲染文本内容 -->
+			<h1 v-text="aaa"></h1>
+			<!-- v-html 可以解析标签 -->
+			<h1 v-html="aaa"></h1>
+			<!-- vue创建实例之后会删除v-cloak 配合css属性选择器displaynone 可以防止页面解析出{{xx}} -->
+			<h1 v-cloak></h1>
+			<!-- v-once所在的节点在初次渲染之后就变成了静态内容 之后数据的改变不会引起v-once所在结构的更新了 -->
+			<h1 v-once>a的初始值是{{a}}</h1>
+			 <h1>a的值是{{a}}</h1>
+			 <!-- v-pre加上之后vue就不会渲染了 可以给没有插值语法的内容加 加快vue的解析 -->
+			  <h1 v-pre>a的值是{{a}}</h1>
+			 <button type="button" @click="a++">点我a++</button>
+		</div>
+		
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			new Vue({
+				el:"#root",
+				data(){
+					return{
+						time:1639917684782,
+						aaa:"<div>111</div>",
+						a:1
+					}
+				},
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" onclick="save()">保存数据</button>
+		<button type="button" onclick="read()">读取数据</button>
+		<button type="button" onclick="del()">删除数据</button>
+		<button type="button" onclick="delAll()">清空数据</button>
+		
+		<script type="text/javascript">
+			
+			// 存储内容 5mb左右 不同浏览器不一样 
+			
+			let p = {name:'yang',age:18}
+			
+			
+			function save(){
+				// 向localStorage里存数据 JSON.stringify(p)就会把对象类型的数据转为字符串
+				localStorage.setItem('person',JSON.stringify(p))
+					localStorage.setItem('yang','hang')
+			}
+			
+			
+			// 读取localstorage里面的值 会给返回值 需要接收 如果没有就是null JSON.parse也是null
+			function read(){
+				let a = localStorage.getItem('person')
+				console.log(JSON.parse(a))
+			}
+			
+			// 删除localstorage
+			function del(){
+				localStorage.removeItem('yang')
+			}
+			
+			// 清空localstorage
+			function delAll(){
+				localStorage.clear()
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

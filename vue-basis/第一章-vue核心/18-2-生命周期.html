@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<h1>{{n}}</h1>
+			<button type="button" @click="n++">点击n++</button>
+			<button type="button" @click="bye">点我销毁vm</button>
+		</div>
+		
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			Vue.config.productionTip = false;
+			
+			let vm = new Vue({
+				el:"#root",
+				//模板写在vue里 但只能有一个根节点 还会整体替换掉html里写的dom
+				// template:`<h1>{{n}}</h1>`,
+				data(){
+					return{
+						n:1
+					}
+				},
+				methods:{
+					bye(){
+						//销毁vm
+						this.$destroy()
+						console.log("bye")
+					}
+				},
+				//
+				beforeCreate(){
+					console.dir("beforeCreate")
+					console.log(this)
+					// debugger;
+				},
+				created(){
+					console.dir("Create")
+					// debugger;
+				},
+				//不要在这里操作dom 因为此时页面的dom还不是真实dom 随后真实dom插入页面会替换掉所做的操作
+				beforeMount(){
+					console.dir("beforMouned")
+					// debugger;
+				},
+				//一开始怎么怎么样就在这一步操作
+				mounted(){
+					console.dir("mounted")
+					// debugger;
+				},
+				//此时数据是新的 但页面上还是旧的
+				beforeUpdate(){
+					console.dir("beforupdated")
+					// console.log(this.n)
+					// debugger;
+				},
+				//此时数据是新的 页面也是新的
+				updated(){
+					console.dir("updated")
+					// console.log(this.n)
+					// debugger;
+				},
+				//销毁vm之前  可以做关闭定时器。。
+				beforeDestroy(){
+					console.dir("beforeDestroy")
+					// this.bye()
+				},
+				destroyed(){
+					console.dir("destroyed")
+				}
+				
+				
+				
+			})
+			//开启vue
+			// vm.$mount("#root")
+			
+		</script>
+	</body>
+</html>

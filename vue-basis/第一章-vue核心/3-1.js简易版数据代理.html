@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script type="text/javascript">
+		
+		//通过一个对象对另一个对象属性进行操作 读/写 就是数据代理
+			let obj = {
+				x:1
+			}
+			let obj2 = {
+				y:2
+			}
+			
+			// 给obj2新增一个属性 属性名是x 属性值就是obj.x的值 
+			Object.defineProperty(obj2,"x",{
+				
+				//添加了这个属性 新增的属性就能被遍历出来 默认值是false
+				// enumerable:true,
+				
+				//添加了这个属性 新增的属性就能修改 不然改不了 默认值是false
+				// writable:true,
+				
+				//添加了这个属性 新增的属性就能被删除 默认值是false
+				// configurable:true,
+				
+				//获取person的age属性时 他就会执行 会去获取age属性的值
+				get(){
+					return obj.x
+				},
+				//如果要对obj2的x进行修改的话 就去修改obj.x的值
+				set(e){
+					obj.x = e
+				}
+			})
+			
+			
+		</script>
+	</body>
+</html>

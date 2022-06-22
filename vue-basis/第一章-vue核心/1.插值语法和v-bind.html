@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+	
+	
+			<div id="content">
+				<!-- 插值语法 -->
+				<h1>{{name}}</h1>
+				<h2>{{age.name}}</h2>
+				<!-- 指令语法 让数据变成表达式 v-bind: 可以简写成: -->
+				<a v-bind:href="url" :data-btn="btn_name">超链接</a>
+			</div>
+
+
+
+
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+
+
+			new Vue({
+				// 获取元素
+				el:'#content',
+				//数据
+				data:{
+					name:"yang",
+					url:"www.baidu.com",
+				//data里面还可以写对象 直接对象点属性就可以
+					age:{
+						name:"hang"
+					},
+					btn_name:"了解更多"
+				}
+				
+				
+			})
+	
+		
+		</script>
+	</body>
+</html>

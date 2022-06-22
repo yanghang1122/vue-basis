@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 填的计算属性 -->
+			<h1>今天天气很{{info}}</h1>
+			<button type="button" @click="btn_click">按钮</button>
+		</div>
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+			
+			let vm = new Vue({
+				el:"#root",
+				data(){
+					return{
+						ishot:true
+					}
+				},
+				// 点击的时候的让ishot取反
+				methods:{
+					btn_click(){
+						this.ishot = !this.ishot
+					}
+				},
+				// 计算ishot是true还是false 返回值的炎热或者凉爽
+				computed:{
+					info:{
+						get(){
+							return this.ishot ? "炎热" : "凉爽"
+						}
+					}
+				},
+				// 监听info的修改 有修改就执行
+				watch:{
+					info:{
+						//初始化的时候执行一次
+						immediate:true,
+						// 接受两个参数 一个新值 一个老值
+						handler(val,oldval){
+							console.log("之前是：" + oldval + ",现在是：" + val)
+						},
+					}
+				}
+			
+				
+				
+				
+				
+			})
+			
+			// 也可以这么写 写在外面 第一个参数是要被监视的属性 第二个是代码
+			/*vm.$watch("info",{
+				handler(val,oldval){
+					console.log("之前是：" + oldval + ",现在是：" + val)
+				},
+			})*/
+			
+		</script>
+		
+	</body>
+</html>

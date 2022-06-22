@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<div id="root">
+			<h1>{{age.name}}</h1>
+		</div>
+
+		<script type="text/javascript">
+		Vue.config.productionTip = false;
+		
+			let v = new Vue({
+				//第一种写法 上来就指定元素
+				// el:"#root",
+				
+				//第一种写法对象式
+				/*data: {
+					name: "哈哈"
+				}*/
+				
+				// 第二种函数式 把对象写成一个函数 函数的返回值是一个对象  对象里面的函数可以简写 data:function(){} 简写成data(){}
+				data:function(){
+					//此时的this是vue实例对象 如果把普通函数换成箭头函数此时的this是window 因为箭头函数没有自己的this 就只能向外找
+					//由vue所管理的函数 不要写箭头函数
+					console.log(this)
+					return{
+						name:"哈哈",
+						age:{
+							name:"age里面的name"
+						}
+					}
+				}
+				
+			})
+
+			v.$mount("#root") //第二种写法 想指定的时候在指定
+		</script>
+	</body>
+</html>

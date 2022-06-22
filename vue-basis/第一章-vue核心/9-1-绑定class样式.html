@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			
+			p{
+				font-size: 40px;
+			}
+			.border_{
+				width: 1000px;
+				height: 200px;
+				border: 1px #000 solid;
+			}
+			.bgc_red{
+				background-color: red;
+			}
+			.bgc_blue{
+				background-color: blue;
+			}
+			.bgc_org{
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 绑定class样式 -->
+		<div class="root border_" :class="bgc">
+			<!-- 绑定style样式 里面也可以写数组 里面再写对象-->
+			<p @click="btn" :style="styobj">{{name}}</p>
+		</div>
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			new Vue({
+				el:".root",
+				data(){
+					return{
+						name:"哈哈",
+						bgc:'bgc_red',
+						styobj:{
+							//连字符删掉 第二个单词首字母大写
+							fontSize: "70px"
+						}
+					}
+				},
+				methods:{
+					btn(){
+						let arr = ["bgc_red","bgc_blue","bgc_org"];
+						let index = Math.floor(Math.random()*3)
+						this.bgc = arr[index]
+					}
+				},
+			})
+			
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<!-- prevent阻止默认行为 -->
+			<a href="www.baidu.com" @click.prevent="showinfo">超链接</a>
+			<!-- stop阻止冒泡 -->
+			<a href="www.baidu.com" @click.stop="showinfo">超链接</a>
+			<!-- 只能点击一次 -->
+			<a href="javascript:;" @click.once="showinfo">超链接</a>
+		</div>
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		
+		
+		new Vue({
+			el:"#root",
+			data(){
+				return{
+					name:"haha"
+				}
+			},
+			methods:{
+				showinfo(e){
+					//阻止超链接默认行为
+					// e.preventDefault()
+					alert("a")
+				}
+			}
+		})
+		
+		
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" onclick="save()">保存数据</button>
+		<button type="button" onclick="read()">读取数据</button>
+		<button type="button" onclick="del()">删除数据</button>
+		<button type="button" onclick="delAll()">清空数据</button>
+		
+		<script type="text/javascript">
+			
+			// sessionStorage关闭浏览器会清空 
+			// localStorage 清缓存就会没有
+			
+			let p = {name:'yang',age:18}
+			function save(){
+				// 向sessionStorage里存数据 JSON.stringify(p)就会把对象类型的数据转为字符串
+				sessionStorage.setItem('person',JSON.stringify(p))
+					sessionStorage.setItem('yang','hang')
+			}
+			
+			
+			// 读取sessionStorage里面的值 会给返回值 需要接收 如果没有就是null JSON.parse也是null
+			function read(){
+				let a = sessionStorage.getItem('person')
+				console.log(JSON.parse(a))
+			}
+			
+			// 删除sessionStorage
+			function del(){
+				sessionStorage.removeItem('yang')
+			}
+			
+			// 清空sessionStorage
+			function delAll(){
+				sessionStorage.clear()
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

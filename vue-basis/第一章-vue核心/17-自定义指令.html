@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<h2>当前的n值是：<span v-text="n"></span></h2>
+			<h2>放大十倍的n:<span v-big="n"></span></h2>
+			<button type="button" @click="n++">点我n++</button>
+			<hr>
+			<input type="text" v-fbind:value="n" />
+		</div>
+
+		
+
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//vue所有的指令都是局部指令 这样写就是全局指令
+			// 1.对象写法
+			/*Vue.directive("fbind", {
+				bind(element, binding) {
+					element.value = binding.value
+				},
+				inserted(element, binding) {
+					element.focus()
+				},
+				update(element, binding) {
+					element.value = binding.value
+					element.focus()
+				}
+			})*/
+			
+			// 2.函数写法
+			/*Vue.directive('big',function(element, binding){
+				element.innerText = binding.value * 10
+			})*/
+			
+			new Vue({
+				el: "#root",
+				data() {
+					return {
+						n: 1
+					}
+				},
+				directives: {
+					//big何时被调用 1.指令和元素绑定的时候调用一下 2.指令所在的模板被重新解析
+					big(element, binding) {
+						//第一个参数就是绑定的元素
+						// 第二个就是绑定元素的值
+						element.innerText = binding.value * 10
+						//自定义指令里面的this都是window
+						console.log(this)
+					},
+					fbind: {
+						// 指令和元素绑定的时候调用
+						bind(element, binding) {
+							element.value = binding.value
+						},
+						// 指令所在元素被插入页面的时候调用
+						inserted(element, binding) {
+							//获取焦点
+							element.focus()
+						},
+						// 指令所在的模板被重新解析的时候调用
+						update(element, binding) {
+							element.value = binding.value
+							element.focus()
+						}
+					}
+				}
+			
+			})
+
+
+			
+		</script>
+	</body>
+</html>

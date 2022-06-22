@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root">
+			<h1>当前时间的时间戳：{{time}}</h1>
+			<!-- 过滤器前面的参数是要过滤的参数 后面配的是过滤的函数 第二个参数的返回值会替换掉整个h2 -->
+			<h2>过滤后的时间：{{time | times}}</h2>
+		</div>
+		
+		
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/dayjs.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			new Vue({
+				el:"#root",
+				data(){
+					return{
+						time:1639917684782,
+					}
+				},
+				filters:{
+					times(value){
+						console.dir(value)
+						return dayjs(value).format('YYYY年MM月DD日')
+					}
+				}
+			})
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+
+
+		<div id="content">
+			<!-- 遍历数组 可以遍历出两个参数 一个内容 一个索引 -->
+			搜索<input type="text" placeholder="请输入" v-model="keyword" />
+			<div v-for="(p,index) in filpersons" :key="index">
+				{{p.id}}-{{p.name}}-{{p.age}}
+			</div>
+			<button type="button" @click="sorttype = 2">年龄升序</button>
+			<button type="button" @click="sorttype = 1">年龄降序</button>
+			<button type="button" @click="sorttype = 0">默认排序</button>
+		</div>
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+			new Vue({
+				el: "#content",
+				data() {
+					return {
+						persons:[
+							{id:001,name:"马冬梅",age:26},
+							{id:002,name:"周冬雨",age:31},
+							{id:003,name:"周杰伦",age:68},
+							{id:004,name:"温兆伦",age:21},
+						],
+						keyword:'',
+						sorttype:0,
+					}
+				},
+				computed:{
+					filpersons:{
+						get(){
+							let arr = this.persons.filter((p) =>{
+								return p.name.indexOf(this.keyword) !== -1;
+							})
+							// 判断sorttype 1 2 是ture  0是false
+							if(this.sorttype){
+								arr.sort((p1,p2)=>{
+									return this.sorttype === 1 ? p2.age-p1.age : p1.age-p2.age
+								})
+							}
+							return arr
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

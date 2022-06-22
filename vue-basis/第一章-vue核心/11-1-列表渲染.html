@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+	
+	
+			<div id="content">
+				<!-- 遍历数组 可以遍历出两个参数 一个内容 一个索引 -->
+				<div v-for="(p,index) in persons" :key="p.id">
+					{{p.name}}-{{index}}
+				</div>
+				
+				<!-- 遍历对象 遍历两个参数 一个是value 一个是key -->
+				<div v-for="(p,index) in car">
+					{{p}}{{index}}
+				</div>
+				
+				<!-- 遍历字符串 p是每个字符 index是索引 -->
+				<div v-for="(p,index) in str">
+					{{p}}{{index}}
+				</div>
+				
+			</div>
+
+
+
+
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false;
+
+
+			new Vue({
+				el:"#content",
+				data(){
+					return{
+						persons:[
+							{id:001,name:"张三",age:18},
+							{id:002,name:"李四",age:19},
+							{id:003,name:"王五",age:20},
+						],
+						car:{
+							name:"奥迪R8",
+							price:100,
+							color:"黑色"
+						},
+						str:"哇哈哈"
+					}
+				}
+				
+				
+			})
+	
+		
+		</script>
+	</body>
+</html>
